@@ -2,3 +2,6 @@ node_modules/
 
 # for local mongo
 mongo-volume/
+
+# for variable resolver
+.env
