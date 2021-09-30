@@ -25,7 +25,6 @@ interface SubRoutes {
  *
  */
 
-// mongoose.connect('mongodb://localhost/sample');
 mongoose.connect(process.env.MONGODB_URL as string);
 
 const MetadatSchema = new Schema(MetadataSchema);
