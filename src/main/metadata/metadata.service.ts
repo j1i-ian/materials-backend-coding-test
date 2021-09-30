@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import { Metadata } from 'main/models/metadata.model';
 import { MetadataDao } from './metadata.dao';
 import { Converter } from '../utils/converter.service';
+import { MetadataResponse } from 'main/models/metadata-response.dto';
 
 export class MetadataService {
 
@@ -14,13 +15,14 @@ export class MetadataService {
         this.converter = new Converter();
     }
 
-    async getAllMetadatas(): Promise<Metadata[]> {
+    async getAllMetadatas(): Promise<MetadataResponse[]> {
 
-        const allMetadata = await this.metadataDao.getMetadatas();
+        const allMetadata = await this.metadataDao.getAllMetadatas();
+
         return allMetadata;
     }
 
-    async saveMetadatas(newMetadata: Pick<Metadata, 'url'>): Promise<Metadata> {
+    async saveMetadatas(newMetadata: Pick<Metadata, 'url'>): Promise<MetadataResponse> {
 
         const { url } = newMetadata;
 
@@ -28,12 +30,12 @@ export class MetadataService {
         const resp = await fetch(url);
         const targetPageHtml = await resp.text() as string;
 
-        const metadata = this.converter.convertToMetadata(targetPageHtml);
+        const convertedMetadata = this.converter.convertToMetadata(targetPageHtml);
 
         // save to mongo
-        const savedMetadata = metadata;
+        const savedMetadata = await this.metadataDao.saveMetadatas(convertedMetadata);
 
-        return savedMetadata;
+        return this.converter.convertToMetadataResponseDTO(savedMetadata);
     }
 
 }

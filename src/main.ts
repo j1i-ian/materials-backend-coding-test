@@ -1,10 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import express from 'express';
 
 import morgan from 'morgan';
 import httpError from 'http-errors';
 import { MetadataController } from './main/metadata/metadata.controller';
 import { ControllerInterface } from './main/controller.interface';
+import { MetadataSchema } from './main/schema/metadata.schema';
 
 require('dotenv').config();
 
@@ -27,7 +28,9 @@ interface SubRoutes {
 // mongoose.connect('mongodb://localhost/sample');
 mongoose.connect(process.env.MONGODB_URL as string);
 
-// console.log(db);
+const MetadatSchema = new Schema(MetadataSchema);
+
+mongoose.model('Metadata', MetadatSchema);
 
 app.use(morgan('short'));
 app.use(express.json());
