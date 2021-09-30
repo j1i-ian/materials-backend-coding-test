@@ -1,0 +1,7 @@
+name: GitHubActions
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: node:16-alpine
+    steps:
+      - run: npm run lint
