@@ -29,10 +29,10 @@ export class MetadataService {
         const resp = await fetch(url);
         const targetPageHtml = await resp.text() as string;
 
-        const metadata = this.converter.convertToMetadata(targetPageHtml);
+        const convertedMetadata = this.converter.convertToMetadata(targetPageHtml);
 
         // save to mongo
-        const savedMetadata = metadata;
+        const savedMetadata = await this.metadataDao.saveMetadatas(convertedMetadata);
 
         return savedMetadata;
     }
