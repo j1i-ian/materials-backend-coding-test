@@ -16,6 +16,8 @@
     "target": "es2015",
     "module": "CommonJS",
     "lib": ["es2018", "dom"],
+    "esModuleInterop": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
   }
 }
