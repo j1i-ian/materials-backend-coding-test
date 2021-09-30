@@ -27,7 +27,14 @@ interface SubRoutes {
 
 mongoose.connect(process.env.MONGODB_URL as string);
 
-const MetadatSchema = new Schema(MetadataSchema);
+const MetadatSchema = new Schema(MetadataSchema, {
+    toJSON: {
+        transform: (doc, _metadata) => {
+            delete _metadata._id;
+            delete _metadata.__v;
+        }
+    }
+});
 
 mongoose.model('Metadata', MetadatSchema);
 
