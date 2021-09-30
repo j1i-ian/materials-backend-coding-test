@@ -14,7 +14,8 @@ export class MetadataDao {
 
     async saveMetadatas(newMetadata: Metadata): Promise<Metadata> {
         // save to mongo
-        const savedMetadata = this.getModel().insertMany(newMetadata);
+        const Metdata = this.getModel();
+        const savedMetadata = Metdata.insertMany(newMetadata);
 
         return savedMetadata;
     }
