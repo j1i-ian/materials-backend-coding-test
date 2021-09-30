@@ -1,0 +1,17 @@
+version: '3'
+services:
+  database:
+    image: 'mongo'
+    container_name: 'cocon-material' # give your contatner a name
+    environment:
+      - MONGO_INITDB_DATABASE=sample
+      - MONGO_INITDB_ROOT_USERNAME=test
+      # set password for local mongo
+      # on production, this field will be injected by CI/CD
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+
