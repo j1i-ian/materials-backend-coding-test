@@ -35,7 +35,7 @@ export class MetadataService {
         // save to mongo
         const savedMetadata = await this.metadataDao.saveMetadatas(convertedMetadata);
 
-        return savedMetadata;
+        return this.converter.convertToMetadataResponseDTO(savedMetadata);
     }
 
 }

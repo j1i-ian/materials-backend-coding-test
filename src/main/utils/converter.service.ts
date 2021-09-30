@@ -1,3 +1,4 @@
+import { MetadataResponse } from 'main/models/metadata-response.dto';
 import { Metadata } from 'main/models/metadata.model';
 import { HTMLElement, parse } from 'node-html-parser';
 
@@ -33,6 +34,14 @@ export class Converter {
         metadata.date = new Date().toISOString();
 
         return metadata;
+    }
+
+    convertToMetadataResponseDTO(metadata: Metadata): MetadataResponse {
+        return Object.create({
+            ...metadata,
+            _id: undefined,
+            __v: undefined
+        });
     }
 
 }
