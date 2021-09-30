@@ -10,7 +10,7 @@ test('check service is defined', () => {
 
 test('check service is defined', () => {
 
-    dao.getMetadatas = jest.fn().mockResolvedValue([]);
+    dao.getAllMetadatas = jest.fn().mockResolvedValue([]);
 
     expect(service.getAllMetadatas());
 });

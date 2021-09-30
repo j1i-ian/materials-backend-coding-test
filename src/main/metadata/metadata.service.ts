@@ -16,7 +16,8 @@ export class MetadataService {
 
     async getAllMetadatas(): Promise<Metadata[]> {
 
-        const allMetadata = await this.metadataDao.getMetadatas();
+        const allMetadata = await this.metadataDao.getAllMetadatas();
+
         return allMetadata;
     }
 
