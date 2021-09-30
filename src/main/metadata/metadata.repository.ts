@@ -2,7 +2,7 @@ import { Model, model } from 'mongoose';
 
 import { Metadata } from 'main/models/metadata.model';
 
-export class MetadataDao {
+export class MetadataRepository {
   async getAllMetadatas(): Promise<Metadata[]> {
     const Metdata = this.getModel();
     const allMetadata = await Metdata.find({});

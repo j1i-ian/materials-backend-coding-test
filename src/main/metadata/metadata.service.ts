@@ -1,16 +1,16 @@
 import fetch from 'node-fetch';
 
 import { Metadata } from 'main/models/metadata.model';
-import { MetadataDao } from './metadata.dao';
+import { MetadataRepository } from './metadata.repository';
 import { Converter } from '../utils/converter.service';
 import { MetadataResponse } from 'main/models/metadata-response.dto';
 
 export class MetadataService {
-  metadataDao: MetadataDao;
+  metadataDao: MetadataRepository;
   converter: Converter;
 
   constructor() {
-    this.metadataDao = new MetadataDao();
+    this.metadataDao = new MetadataRepository();
     this.converter = new Converter();
   }
 
