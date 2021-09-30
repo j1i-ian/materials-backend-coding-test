@@ -64,7 +64,12 @@ module.exports = {
                 accessibility: "explicit"
             }
         ],
-        "@typescript-eslint/no-misused-promises ": "off",
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksVoidReturn": false
+            }
+        ],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "@typescript-eslint/indent": ["error", 4],
         "@typescript-eslint/member-delimiter-style": [
@@ -88,6 +93,8 @@ module.exports = {
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-function-type": "error",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/require-await": "warn",
         "@typescript-eslint/quotes": [
             "error",
             "single"
@@ -151,7 +158,7 @@ module.exports = {
         "max-len": [
             "error",
             {
-                code: 180
+                code: 700
             }
         ],
         "new-parens": "error",

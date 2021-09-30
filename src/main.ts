@@ -6,16 +6,16 @@ import httpError from 'http-errors';
 import { MetadataController } from './main/metadata/metadata.controller';
 import { ControllerInterface } from './main/controller.interface';
 
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 
 const port = process.env.PORT || 3000;
 
-type SubRoutes = {
+interface SubRoutes {
     prefix: string;
-    controller: ControllerInterface
-};
+    controller: ControllerInterface;
+}
 
 /**
  * Initialize app.
@@ -54,5 +54,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, function(){
-    console.log('Listening on port ' + port);
+    console.log(`Listening on port ${ port }`);
 });

@@ -5,13 +5,13 @@ const service = new MetadataService();
 const dao = new MetadataDao();
 
 test('check service is defined', () => {
-  expect(service);
+    expect(service);
 });
 
 test('check service is defined', () => {
 
-  dao.getMetadatas = jest.fn().mockResolvedValue([]);
+    dao.getMetadatas = jest.fn().mockResolvedValue([]);
 
-  expect(service.getAllMetadatas());
+    expect(service.getAllMetadatas());
 });
 

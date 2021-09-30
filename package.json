@@ -6,6 +6,7 @@
   "scripts": {
     "initial": "bash ./scripts/init.sh",
     "start": "tsc-watch --project . --outDir ./dist --onSuccess \"nodemon ./dist/main.js\"",
+    "lint": "eslint -c .eslintrc.js --ignore-path .gitignore --ignore-path .eslintignore --ext .ts,.tsx src",
     "test": "jest --config ./jest.config.js --detectOpenHandles --forceExit --ci --reporters=default"
   },
   "keywords": [],
