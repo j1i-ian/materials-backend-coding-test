@@ -1,6 +1,5 @@
-import { MetadataResponse } from 'main/models/metadata-response.dto';
 import { Metadata } from 'main/models/metadata.model';
-import { HTMLElement, parse } from 'node-html-parser';
+import { parse } from 'node-html-parser';
 
 interface HTMLMetaAttr {
     property: string;
@@ -11,7 +10,7 @@ export class Converter {
 
     convertToMetadata(targetPageHtml: string): Metadata {
 
-        const targetDom = parse(targetPageHtml) as HTMLElement;
+        const targetDom = parse(targetPageHtml);
         const ogMetadataElements = targetDom.querySelectorAll('meta[property*=og]');
         const attributeList = ogMetadataElements.map(m => m.attributes) as any as HTMLMetaAttr[];
 

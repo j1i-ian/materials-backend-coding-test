@@ -9,7 +9,7 @@ export class MetadataDao {
         const Metdata = this.getModel();
         const allMetadata = await Metdata.find({});
 
-        return allMetadata as any;
+        return allMetadata;
     }
 
     async saveMetadatas(newMetadata: Metadata): Promise<Metadata> {
@@ -20,9 +20,9 @@ export class MetadataDao {
         return savedMetadata;
     }
 
-    getModel(): Model<Metadata, {}, {}, {}> {
-        const Metadata = model<Metadata>('Metadata');
-        return Metadata;
+    getModel(): Model<Metadata, any, any, any> {
+        const MetadataDoc = model<Metadata>('Metadata');
+        return MetadataDoc;
     }
 
 }

@@ -4,5 +4,5 @@ export const MetadataSchema = {
     image: String,
     publisher: String,
     title: String,
-    url: String,
-}
+    url: String
+};
