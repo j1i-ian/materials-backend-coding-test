@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import express from 'express';
 
 import morgan from 'morgan';
@@ -27,7 +27,7 @@ interface SubRoutes {
 
 mongoose.connect(process.env.MONGODB_URL as string);
 
-const MetadatSchema = new Schema(MetadataSchema, {
+const MetadatSchema = new mongoose.Schema(MetadataSchema, {
   toJSON: {
     transform: (doc, _metadata) => {
       delete _metadata._id;
