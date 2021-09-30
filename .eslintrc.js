@@ -71,7 +71,7 @@ module.exports = {
             }
         ],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
-        "@typescript-eslint/indent": ["error", 4],
+        "@typescript-eslint/indent": ["error", 2],
         "@typescript-eslint/member-delimiter-style": [
             "error",
             {
