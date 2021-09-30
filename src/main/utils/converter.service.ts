@@ -35,13 +35,4 @@ export class Converter {
 
         return metadata;
     }
-
-    convertToMetadataResponseDTO(metadata: Metadata): MetadataResponse {
-        return Object.create({
-            ...metadata,
-            _id: undefined,
-            __v: undefined
-        });
-    }
-
 }
