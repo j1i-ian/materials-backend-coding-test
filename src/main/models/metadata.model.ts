@@ -9,6 +9,9 @@
  * @param url source url. https://visualstudio.microsoft.com/ko/vs/features/node-js/
  */
 export class Metadata {
+    _id: string;
+    __v: number;
+
     date: string;
     description: string;
     image: string;
