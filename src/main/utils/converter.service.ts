@@ -2,36 +2,36 @@ import { Metadata } from 'main/models/metadata.model';
 import { parse } from 'node-html-parser';
 
 interface HTMLMetaAttr {
-    property: string;
-    content: string;
+  property: string;
+  content: string;
 }
 
 export class Converter {
+  convertToMetadata(targetPageHtml: string): Metadata {
+    const targetDom = parse(targetPageHtml);
+    const ogMetadataElements = targetDom.querySelectorAll('meta[property*=og]');
+    const attributeList = ogMetadataElements.map(
+      (m) => m.attributes
+    ) as any as HTMLMetaAttr[];
 
-    convertToMetadata(targetPageHtml: string): Metadata {
+    const propertyMaps = {
+      'og:description': 'description',
+      'og:image': 'image',
+      'og:site_name': 'publisher',
+      'og:title': 'title',
+      'og:url': 'url'
+    };
 
-        const targetDom = parse(targetPageHtml);
-        const ogMetadataElements = targetDom.querySelectorAll('meta[property*=og]');
-        const attributeList = ogMetadataElements.map(m => m.attributes) as any as HTMLMetaAttr[];
+    const metadata = {} as Metadata;
+    attributeList.forEach((attr) => {
+      const metadataProperty = propertyMaps[attr.property];
 
-        const propertyMaps = {
-            'og:description': 'description',
-            'og:image': 'image',
-            'og:site_name': 'publisher',
-            'og:title': 'title',
-            'og:url': 'url'
-        };
+      if (metadataProperty) {
+        metadata[metadataProperty] = attr.content;
+      }
+    });
+    metadata.date = new Date().toISOString();
 
-        const metadata = {} as Metadata;
-        attributeList.forEach(attr => {
-            const metadataProperty = propertyMaps[attr.property];
-
-            if (metadataProperty) {
-                metadata[metadataProperty] = attr.content;
-            }
-        });
-        metadata.date = new Date().toISOString();
-
-        return metadata;
-    }
+    return metadata;
+  }
 }

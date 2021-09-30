@@ -71,7 +71,7 @@ module.exports = {
             }
         ],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
-        "@typescript-eslint/indent": ["error", 4],
+        "@typescript-eslint/indent": ["error", 2],
         "@typescript-eslint/member-delimiter-style": [
             "error",
             {
@@ -226,14 +226,7 @@ module.exports = {
             "consistent-as-needed"
         ],
         radix: "error",
-        "space-before-function-paren": [
-            "error",
-            {
-                anonymous: "never",
-                asyncArrow: "always",
-                named: "never"
-            }
-        ],
+        "space-before-function-paren": "off",
         "spaced-comment": [
             "error",
             "always",
