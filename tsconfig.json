@@ -19,5 +19,7 @@
     "esModuleInterop": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
+    "types": ["node", "jest"],
+    "typeRoots": ["node_modules/@types"],
   }
 }
