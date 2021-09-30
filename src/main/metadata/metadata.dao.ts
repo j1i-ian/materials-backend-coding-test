@@ -7,9 +7,9 @@ export class MetadataDao {
     async getAllMetadatas(): Promise<Metadata[]> {
 
         const Metdata = this.getModel();
-        const allMetadata = Metdata.find() as any as Metadata[];
+        const allMetadata = await Metdata.find({});
 
-        return allMetadata;
+        return allMetadata as any;
     }
 
     async saveMetadatas(newMetadata: Metadata): Promise<Metadata> {
