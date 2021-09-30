@@ -226,14 +226,7 @@ module.exports = {
             "consistent-as-needed"
         ],
         radix: "error",
-        "space-before-function-paren": [
-            "error",
-            {
-                anonymous: "never",
-                asyncArrow: "always",
-                named: "never"
-            }
-        ],
+        "space-before-function-paren": "off",
         "spaced-comment": [
             "error",
             "always",
