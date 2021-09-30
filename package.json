@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "initial": "bash ./scripts/init.sh",
-    "start": "ts-node -P tsconfig.json -r tsconfig-paths/register src/main.ts",
+    "start": "tsc-watch --project . --outDir ./dist --onSuccess \"nodemon ./dist/main.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -35,6 +35,7 @@
     "nodemon": "^2.0.13",
     "prettier": "^2.4.1",
     "ts-node": "^10.2.1",
+    "tsc-watch": "^4.5.0",
     "tsconfig-paths": "^3.11.0"
   }
 }
