@@ -12,12 +12,12 @@ export class MetadataController implements ControllerInterface {
 
     constructor() {
 
-        this.router.get('/metadata', async (req, res) => {
+        this.router.get('/metadatas', async (req, res) => {
             const allMetadata = await this.service.getAllMetadatas();
             res.send(allMetadata);
         });
 
-        this.router.post('/metadatas', async (req, res) => {
+        this.router.post('/metadata', async (req, res) => {
 
             const newMetdata = req.body as Metadata;
             const created = await this.service.saveMetadatas(newMetdata);
