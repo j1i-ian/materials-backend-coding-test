@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const subRoutes = [
     {
-        prefix: '/metadatas',
+        prefix: '/',
         controller: new MetadataController()
     }
 
