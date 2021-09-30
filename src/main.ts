@@ -14,8 +14,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 interface SubRoutes {
-    prefix: string;
-    controller: ControllerInterface;
+  prefix: string;
+  controller: ControllerInterface;
 }
 
 /**
@@ -28,12 +28,12 @@ interface SubRoutes {
 mongoose.connect(process.env.MONGODB_URL as string);
 
 const MetadatSchema = new Schema(MetadataSchema, {
-    toJSON: {
-        transform: (doc, _metadata) => {
-            delete _metadata._id;
-            delete _metadata.__v;
-        }
+  toJSON: {
+    transform: (doc, _metadata) => {
+      delete _metadata._id;
+      delete _metadata.__v;
     }
+  }
 });
 
 mongoose.model('Metadata', MetadatSchema);
@@ -43,25 +43,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const subRoutes = [
-    {
-        prefix: '/',
-        controller: new MetadataController()
-    }
-
+  {
+    prefix: '/',
+    controller: new MetadataController()
+  }
 ] as SubRoutes[];
-
 
 // health check
 app.get('/', (req, res) => res.send('ok'));
 
-subRoutes.forEach(route => app.use(route.prefix, route.controller.routers));
+subRoutes.forEach((route) => app.use(route.prefix, route.controller.routers));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-    console.error('url cannot found');
-    next(httpError(404));
+  console.error('url cannot found');
+  next(httpError(404));
 });
 
-app.listen(port, function(){
-    console.log(`Listening on port ${ port }`);
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
 });

@@ -6,36 +6,36 @@ import { Converter } from '../utils/converter.service';
 import { MetadataResponse } from 'main/models/metadata-response.dto';
 
 export class MetadataService {
+  metadataDao: MetadataDao;
+  converter: Converter;
 
-    metadataDao: MetadataDao;
-    converter: Converter;
+  constructor() {
+    this.metadataDao = new MetadataDao();
+    this.converter = new Converter();
+  }
 
-    constructor() {
-        this.metadataDao = new MetadataDao();
-        this.converter = new Converter();
-    }
+  async getAllMetadatas(): Promise<MetadataResponse[]> {
+    const allMetadata = await this.metadataDao.getAllMetadatas();
 
-    async getAllMetadatas(): Promise<MetadataResponse[]> {
+    return allMetadata;
+  }
 
-        const allMetadata = await this.metadataDao.getAllMetadatas();
+  async saveMetadatas(
+    newMetadata: Pick<Metadata, 'url'>
+  ): Promise<MetadataResponse> {
+    const { url } = newMetadata;
 
-        return allMetadata;
-    }
+    // fetch metadata from sites.
+    const resp = await fetch(url);
+    const targetPageHtml = (await resp.text()) as string;
 
-    async saveMetadatas(newMetadata: Pick<Metadata, 'url'>): Promise<MetadataResponse> {
+    const convertedMetadata = this.converter.convertToMetadata(targetPageHtml);
 
-        const { url } = newMetadata;
+    // save to mongo
+    const savedMetadata = await this.metadataDao.saveMetadatas(
+      convertedMetadata
+    );
 
-        // fetch metadata from sites.
-        const resp = await fetch(url);
-        const targetPageHtml = await resp.text() as string;
-
-        const convertedMetadata = this.converter.convertToMetadata(targetPageHtml);
-
-        // save to mongo
-        const savedMetadata = await this.metadataDao.saveMetadatas(convertedMetadata);
-
-        return savedMetadata;
-    }
-
+    return savedMetadata;
+  }
 }
