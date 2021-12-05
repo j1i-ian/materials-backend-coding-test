@@ -1,4 +1,4 @@
-# cocon 과제 by 이지한
+# cocon 과제
 
 ## Docker-base run
 
