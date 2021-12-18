@@ -19,7 +19,7 @@ services:
 
   database:
     image: 'mongo'
-    container_name: 'cocon-material' # give your contatner a name
+    container_name: 'cocon-material'
     environment:
       - MONGO_INITDB_DATABASE=sample
     volumes:
