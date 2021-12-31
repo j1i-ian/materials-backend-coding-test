@@ -1,4 +1,4 @@
-# cocon 과제
+# 과제
 
 ## Docker-base run
 
